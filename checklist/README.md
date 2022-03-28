@@ -1,234 +1,231 @@
-# Bug Bounty Checklist for Web App
+# Контрольный список Bug Bounty для веб-приложения
 
-> This checklist may help you to have a good methodology for bug bounty hunting  
-When you have done a action, don't forget to check ;)  
-Happy hunting !  
+> Этот контрольный список может помочь вам иметь хорошую методологию поиска ошибок
+Совершив действие, не забудьте поставить галочку ;)
+Хорошей охоты !
 
-## Table of Contents
+## Оглавление
 
-* [Recon on wildcard domain](#"Recon_on_wildcard_domain")
-* [Single domain](#Single_domain)
-* [Information Gathering](#Information)
-* [Configuration Management](#Configuration)
-* [Secure Transmission](#Transmission)
-* [Authentication](#Authentication)
-* [Session Management](#Session)
-* [Authorization](#Authorization)
-* [Data Validation](#Validation)
-* [Denial of Service](#Denial)
-* [Business Logic](#Business)
-* [Cryptography](#Cryptography)
-* [Risky Functionality - File Uploads](#File)
-* [Risky Functionality - Card Payment](#Card)
+* [Recon_on_wildcard_domain](#"Recon_on_wildcard_domain")
+* [Один домен](#Single_domain)
+* [Сбор информации](#Информация)
+* [Управление конфигурацией](#Конфигурация)
+* [Безопасная передача](#Передача)
+* [Аутентификация](#Аутентификация)
+* [Управление сеансом](#Сессия)
+* [Авторизация](#Авторизация)
+* [Проверка данных](#Проверка)
+* [Отказ в обслуживании](#Отказ)
+* [Бизнес-логика](#Бизнес)
+* [Криптография](#Криптография)
+* [Рискованная функциональность — загрузка файлов](#File)
+* [Рискованная функциональность - оплата картой](#Card)
 * [HTML 5](#HTML)
 
 
-## <a name="Recon_on_wildcard_domain">Recon on wildcard domain</a>  
+## <a name="Recon_on_wildcard_domain">Поиск в подстановочном домене</a>
 
-- [ ] Run amass  
-- [ ] Run subfinder  
-- [ ] Run assetfinder  
-- [ ] Run dnsgen  
-- [ ] Run massdns  
-- [ ] Use httprobe  
-- [ ] Run aquatone (screenshot for alive host)  
-
-
-## <a name="Single_domain">Single Domain</a>  
-
-### Scanning  
-
-- [ ] Nmap scan   
-- [ ] Burp crawler   
-- [ ] ffuf (directory and file fuzzing)
-- [ ] hakrawler/gau/paramspider  
-- [ ] Linkfinder  
-- [ ] Url with Android application   
-
-### Manual checking  
-
-- [ ] Shodan  
-- [ ] Censys  
-- [ ] Google dorks  
-- [ ] Pastebin  
-- [ ] Github  
-- [ ] OSINT     
-
-### <a name="Information">Information Gathering</a>
-- [ ] Manually explore the site  
-- [ ] Spider/crawl for missed or hidden content  
-- [ ] Check for files that expose content, such as robots.txt, sitemap.xml, .DS_Store  
-- [ ] Check the caches of major search engines for publicly accessible sites  
-- [ ] Check for differences in content based on User Agent (eg, Mobile sites, access as a Search engine Crawler)  
-- [ ] Perform Web Application Fingerprinting  
-- [ ] Identify technologies used  
-- [ ] Identify user roles  
-- [ ] Identify application entry points  
-- [ ] Identify client-side code  
-- [ ] Identify multiple versions/channels (e.g. web, mobile web, mobile app, web services)  
-- [ ] Identify co-hosted and related applications  
-- [ ] Identify all hostnames and ports  
-- [ ] Identify third-party hosted content  
-- [ ] Identify Debug parameters  
+- [ ] Накопить
+- [ ] Запустить вспомогательный поиск
+- [ ] Запустить поиск активов
+- [ ] Запустить dnsgen
+- [ ] Запустить массднс
+- [ ] Использовать httprobe
+- [ ] Запустить акватон (скриншот для живого хоста)
 
 
-### <a name="Configuration">Configuration Management</a>
+## <a name="Single_domain">Один домен</a>
 
-- [ ] Check for commonly used application and administrative URLs  
-- [ ] Check for old, backup and unreferenced files  
-- [ ] Check HTTP methods supported and Cross Site Tracing (XST)  
-- [ ] Test file extensions handling  
-- [ ] Test for security HTTP headers (e.g. CSP, X-Frame-Options, HSTS)  
-- [ ] Test for policies (e.g. Flash, Silverlight, robots)  
-- [ ] Test for non-production data in live environment, and vice-versa  
-- [ ] Check for sensitive data in client-side code (e.g. API keys, credentials)  
+### Сканирование
+
+- [ ] сканирование Nmap
+- [ ] Отрыжка гусеница
+- [ ] ffuf (фаззинг каталогов и файлов)
+- [ ] хакраулер/гау/парампаук
+- [ ] Поиск ссылок
+- [ ] URL с приложением для Android
+
+### Ручная проверка
+
+- [ ] Шодан
+- [ ] Ценсис
+- [ ] Гугл докс
+- [ ] Пастебин
+- [] Гитхаб
+- [ ] ОСИНТ
+
+### <a name="Information">Сбор информации</a>
+- [ ] Вручную исследовать сайт
+- [ ] Паук/сканирование для пропущенного или скрытого контента
+- [ ] Проверить наличие файлов, раскрывающих содержимое, таких как robots.txt, sitemap.xml, .DS_Store.
+- [ ] Проверка кешей основных поисковых систем на наличие общедоступных сайтов
+- [ ] Проверка различий в содержимом на основе агента пользователя (например, мобильные сайты, доступ в качестве поискового робота).
+- [ ] Выполнение отпечатков пальцев веб-приложений
+- [ ] Определить используемые технологии
+- [ ] Определить роли пользователей
+- [ ] Определить точки входа приложения
+- [ ] Определить клиентский код
+- [ ] Определить несколько версий/каналов (например, Интернет, мобильный Интернет, мобильное приложение, веб-сервисы)
+- [ ] Определить совместно размещенные и связанные приложения
+- [ ] Определить все имена хостов и порты
+- [ ] Идентифицировать стороннее размещенное содержимое
+- [ ] Определить параметры отладки
 
 
-### <a name="Transmission">Secure Transmission</a>
+### <a name="Configuration">Управление конфигурацией</a>
 
-- [ ] Check SSL Version, Algorithms, Key length  
-- [ ] Check for Digital Certificate Validity (Duration, Signature and CN)  
-- [ ] Check credentials only delivered over HTTPS  
-- [ ] Check that the login form is delivered over HTTPS  
-- [ ] Check session tokens only delivered over HTTPS  
-- [ ] Check if HTTP Strict Transport Security (HSTS) in use  
+- [ ] Проверка часто используемых приложений и административных URL-адресов
+- [ ] Проверить наличие старых, резервных и неиспользуемых файлов
+- [ ] Проверить поддерживаемые методы HTTP и межсайтовую трассировку (XST)
+- [ ] Проверка обработки расширений файлов
+- [ ] Проверка HTTP-заголовков безопасности (например, CSP, X-Frame-Options, HSTS)
+- [ ] Проверка политик (например, Flash, Silverlight, роботы)
+- [ ] Проверка непроизводственных данных в реальной среде и наоборот
+- [ ] Проверка конфиденциальных данных в коде на стороне клиента (например, ключи API, учетные данные)
 
 
+### <a name="Transmission">Безопасная передача</a>
 
-### <a name="Authentication">Authentication</a>
-- [ ] Test for user enumeration  
-- [ ] Test for authentication bypass  
-- [ ] Test for bruteforce protection  
-- [ ] Test password quality rules  
-- [ ] Test remember me functionality  
-- [ ] Test for autocomplete on password forms/input  
-- [ ] Test password reset and/or recovery  
-- [ ] Test password change process  
-- [ ] Test CAPTCHA  
-- [ ] Test multi factor authentication  
-- [ ] Test for logout functionality presence  
-- [ ] Test for cache management on HTTP (eg Pragma, Expires, Max-age)  
-- [ ] Test for default logins  
-- [ ] Test for user-accessible authentication history  
-- [ ] Test for out-of channel notification of account lockouts and successful password changes  
-- [ ] Test for consistent authentication across applications with shared authentication schema / SSO  
+- [ ] Проверить версию SSL, алгоритмы, длину ключа
+- [ ] Проверка действительности цифрового сертификата (длительность, подпись и общее число)
+- [ ] Проверять учетные данные, доставляемые только по HTTPS
+- [ ] Убедитесь, что форма входа доставляется по HTTPS.
+- [ ] Проверить, что токены сеанса доставляются только по HTTPS.
+- [ ] Проверить, используется ли HTTP Strict Transport Security (HSTS)
 
 
 
-### <a name="Session">Session Management</a>
-- [ ] Establish how session management is handled in the application (eg, tokens in cookies, token in URL)  
-- [ ] Check session tokens for cookie flags (httpOnly and secure)  
-- [ ] Check session cookie scope (path and domain)  
-- [ ] Check session cookie duration (expires and max-age)  
-- [ ] Check session termination after a maximum lifetime  
-- [ ] Check session termination after relative timeout  
-- [ ] Check session termination after logout  
-- [ ] Test to see if users can have multiple simultaneous sessions  
-- [ ] Test session cookies for randomness  
-- [ ] Confirm that new session tokens are issued on login, role change and logout  
-- [ ] Test for consistent session management across applications with shared session management  
-- [ ] Test for session puzzling  
-- [ ] Test for CSRF and clickjacking  
+### <a name="Authentication">Аутентификация</a>
+- [ ] Тест на перечисление пользователей
+- [ ] Тест на обход аутентификации
+- [ ] Тест на защиту от брутфорса
+- [ ] Проверка правил качества пароля
+- [ ] Протестируйте функцию «Запомнить меня»
+- [ ] Проверка автозаполнения в формах/вводе пароля
+- [ ] Тестовый сброс пароля и/или восстановление
+- [ ] Проверка процесса смены пароля
+- [ ] Проверка CAPTCHA
+- [ ] Проверка многофакторной аутентификации
+- [ ] Тест на наличие функции выхода из системы
+- [ ] Проверка управления кешем по HTTP (например, Pragma, Expires, Max-age)
+- [ ] Проверка логинов по умолчанию
+- [ ] Проверка доступной для пользователя истории аутентификации
+- [ ] Проверка внеканального уведомления о блокировке учетной записи и успешном изменении пароля.
+- [ ] Тест на согласованную аутентификацию в приложениях с общей схемой аутентификации/SSO.
 
 
 
-### <a name="Authorization">Authorization</a>
-- [ ] Test for path traversal  
-- [ ] Test for bypassing authorization schema  
-- [ ] Test for vertical Access control problems (a.k.a. Privilege Escalation)  
-- [ ] Test for horizontal Access control problems (between two users at the same privilege level)  
-- [ ] Test for missing authorization  
+### <a name="Session">Управление сеансом</a>
+- [ ] Установите, как управление сеансом обрабатывается в приложении (например, токены в файлах cookie, токен в URL-адресе).
+- [ ] Проверить маркеры сеанса на наличие флагов файлов cookie (только http и безопасно)
+- [ ] Проверить область действия cookie сеанса (путь и домен)
+- [ ] Проверить длительность файла cookie сеанса (срок действия и максимальный возраст)
+- [ ] Проверить завершение сеанса после максимального времени жизни
+- [ ] Проверить завершение сеанса после относительного тайм-аута
+- [ ] Проверить завершение сеанса после выхода из системы
+- [ ] Проверить, могут ли пользователи иметь несколько одновременных сеансов
+- [ ] Проверить файлы cookie сеанса на случайность
+- [ ] Подтвердите, что новые токены сеанса выдаются при входе в систему, изменении роли и выходе из системы.
+- [ ] Проверка согласованного управления сеансами между приложениями с общим управлением сеансами.
+- [ ] Тест на загадку сеанса
+- [ ] Тест на CSRF и кликджекинг
 
 
-### <a name="Validation">Data Validation</a>
-- [ ] Test for Reflected Cross Site Scripting  
-- [ ] Test for Stored Cross Site Scripting  
-- [ ] Test for DOM based Cross Site Scripting  
-- [ ] Test for Cross Site Flashing  
-- [ ] Test for HTML Injection  
-- [ ] Test for SQL Injection  
-- [ ] Test for LDAP Injection  
-- [ ] Test for ORM Injection  
-- [ ] Test for XML Injection  
-- [ ] Test for XXE Injection  
-- [ ] Test for SSI Injection  
-- [ ] Test for XPath Injection  
-- [ ] Test for XQuery Injection  
-- [ ] Test for IMAP/SMTP Injection  
-- [ ] Test for Code Injection  
-- [ ] Test for Expression Language Injection  
-- [ ] Test for Command Injection  
-- [ ] Test for Overflow (Stack, Heap and Integer)  
-- [ ] Test for Format String  
-- [ ] Test for incubated vulnerabilities  
-- [ ] Test for HTTP Splitting/Smuggling  
-- [ ] Test for HTTP Verb Tampering  
-- [ ] Test for Open Redirection  
-- [ ] Test for Local File Inclusion  
-- [ ] Test for Remote File Inclusion  
-- [ ] Compare client-side and server-side validation rules  
-- [ ] Test for NoSQL injection  
-- [ ] Test for HTTP parameter pollution  
-- [ ] Test for auto-binding  
-- [ ] Test for Mass Assignment  
-- [ ] Test for NULL/Invalid Session Cookie  
 
-### <a name="Denial">Denial of Service</a>
-- [ ] Test for anti-automation  
-- [ ] Test for account lockout  
-- [ ] Test for HTTP protocol DoS  
-- [ ] Test for SQL wildcard DoS  
+### <a name="Авторизация">Авторизация</a>
+- [ ] Тест на обход пути
+- [ ] Тест на обход схемы авторизации
+- [ ] Тест на наличие проблем с контролем доступа по вертикали (он же Повышение привилегий)
+- [ ] Тест на наличие проблем горизонтального управления доступом (между двумя пользователями с одинаковым уровнем привилегий)
+- [ ] Тест на отсутствие авторизации
 
 
-### <a name="Business">Business Logic</a>
-- [ ] Test for feature misuse  
-- [ ] Test for lack of non-repudiation  
-- [ ] Test for trust relationships  
-- [ ] Test for integrity of data  
-- [ ] Test segregation of duties  
+### <a name="Validation">Проверка данных</a>
+- [ ] Тест на отраженный межсайтовый скриптинг
+- [ ] Проверка сохраненных межсайтовых сценариев
+- [ ] Тест межсайтового скриптинга на основе DOM
+- [ ] Тест на межсайтовую перепрошивку
+- [ ] Тест на HTML-инъекцию
+- [ ] Тест на SQL-инъекцию
+- [ ] Тест на внедрение LDAP
+- [ ] Тест на внедрение ORM
+- [ ] Тест на XML-инъекцию
+- [ ] Тест на впрыск XXE
+- [ ] Тест на инъекцию SSI
+- [ ] Тест на внедрение XPath
+- [ ] Тест на внедрение XQuery
+- [ ] Тест на внедрение IMAP/SMTP
+- [ ] Тест на внедрение кода
+- [ ] Тест на внедрение языка выражений
+- [ ] Тест на ввод команд
+- [ ] Тест на переполнение (стек, куча и целое число)
+- [ ] Проверка строки формата
+- [ ] Проверка инкубируемых уязвимостей
+- [ ] Тест на расщепление/контрабанду HTTP
+- [ ] Тест на подделку глагола HTTP
+- [ ] Тест на открытое перенаправление
+- [ ] Тест на включение локального файла
+- [ ] Проверка удаленного включения файлов
+- [ ] Сравните правила проверки на стороне клиента и на стороне сервера.
+- [ ] Тест на внедрение NoSQL
+- [ ] Тест на загрязнение параметров HTTP
+- [ ] Тест на автопривязку
+- [ ] Тест на массовое назначение
+- [ ] Тест на NULL/недействительный файл cookie сеанса
+
+### <a name="Denial">Отказ в обслуживании</a>
+- [ ] Тест на антиавтоматизацию
+- [ ] Тест на блокировку учетной записи
+- [ ] Тест на DoS протокол HTTP
+- [ ] Тест на DoS с подстановочными знаками SQL
 
 
-### <a name="Cryptography">Cryptography</a>
-- [ ] Check if data which should be encrypted is not  
-- [ ] Check for wrong algorithms usage depending on context  
-- [ ] Check for weak algorithms usage  
-- [ ] Check for proper use of salting  
-- [ ] Check for randomness functions  
+### <a name="Business">Бизнес-логика</a>
+- [ ] Тест на неправильное использование функции
+- [ ] Тест на отсутствие отказа от авторства
+- [ ] Тест на доверительные отношения
+- [ ] Тест на целостность данных
+- [ ] Проверка разделения обязанностей
 
 
-### <a name="File">Risky Functionality - File Uploads</a>
-- [ ] Test that acceptable file types are whitelisted  
-- [ ] Test that file size limits, upload frequency and total file counts are defined and are enforced  
-- [ ] Test that file contents match the defined file type  
-- [ ] Test that all file uploads have Anti-Virus scanning in-place.  
-- [ ] Test that unsafe filenames are sanitised  
-- [ ] Test that uploaded files are not directly accessible within the web root  
-- [ ] Test that uploaded files are not served on the same hostname/port  
-- [ ] Test that files and other media are integrated with the authentication and authorisation schemas  
+### <a name="Cryptography">Криптография</a>
+- [ ] Проверить, не являются ли данные, которые должны быть зашифрованы,
+- [ ] Проверка использования неправильных алгоритмов в зависимости от контекста
+- [ ] Проверка использования слабых алгоритмов
+- [ ] Проверить правильность использования соления
+- [ ] Проверка функций случайности
 
 
-### <a name="Card">Risky Functionality - Card Payment</a>
-- [ ] Test for known vulnerabilities and configuration issues on Web Server and Web Application  
-- [ ] Test for default or guessable password  
-- [ ] Test for non-production data in live environment, and vice-versa  
-- [ ] Test for Injection vulnerabilities  
-- [ ] Test for Buffer Overflows  
-- [ ] Test for Insecure Cryptographic Storage  
-- [ ] Test for Insufficient Transport Layer Protection  
-- [ ] Test for Improper Error Handling  
-- [ ] Test for all vulnerabilities with a CVSS v2 score > 4.0  
-- [ ] Test for Authentication and Authorization issues  
-- [ ] Test for CSRF  
+### <a name="File">Рискованная функциональность — загрузка файлов</a>
+- [ ] Проверка того, что допустимые типы файлов занесены в белый список.
+- [ ] Проверка того, что ограничения размера файла, частота загрузки и общее количество файлов определены и применяются.
+- [ ] Проверка того, что содержимое файла соответствует определенному типу файла
+- [ ] Проверить, чтобы все загружаемые файлы сканировались антивирусом на месте.
+- [ ] Проверить, что небезопасные имена файлов очищены
+- [ ] Проверка того, что загруженные файлы не доступны напрямую в корневом каталоге веб-сайта.
+- [ ] Проверка того, что загруженные файлы не обслуживаются на том же имени хоста/порту.
+- [ ] Проверка того, что файлы и другие носители интегрированы со схемами аутентификации и авторизации.
+
+
+### <a name="Card">Рискованная функциональность – оплата картой</a>
+- [ ] Проверка известных уязвимостей и проблем с конфигурацией веб-сервера и веб-приложения.
+- [ ] Проверка пароля по умолчанию или угадываемого
+- [ ] Проверка непроизводственных данных в реальной среде и наоборот
+- [ ] Тест на уязвимости Injection
+- [ ] Тест на переполнение буфера
+- [ ] Тест на небезопасное криптографическое хранилище
+- [ ] Тест на недостаточную защиту транспортного уровня
+- [ ] Тест на неправильную обработку ошибок
+- [ ] Тест на все уязвимости с оценкой CVSS v2 > 4.0
+- [ ] Тест на проблемы аутентификации и авторизации
+- [ ] Тест на CSRF
 
 
 ### <a name="HTML">HTML 5</a>
-- [ ] Test Web Messaging  
-- [ ] Test for Web Storage SQL injection  
-- [ ] Check CORS implementation  
-- [ ] Check Offline Web Application  
+- [ ] Проверка веб-сообщений
+- [ ] Тест на SQL-инъекцию веб-хранилища
+- [ ] Проверить реализацию CORS
+- [ ] Проверить автономное веб-приложение
 
-Source:  
-[OWASP](https://www.owasp.org/index.php/Web_Application_Security_Testing_Cheat_Sheet)  
-
-
-
+Источник:
+[OWASP](https://www.owasp.org/index.php/Web_Application_Security_Testing_Cheat_Sheet)
